@@ -1,0 +1,47 @@
+{% extends "admin/base.html" %}
+{% load i18n static %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">
+    <a href="{% url 'admin:index' %}">
+        🛒 {{ site_header|default:_('Django administration') }}
+    </a>
+</h1>
+{% endblock %}
+
+{% block extrastyle %}
+{{ block.super }}
+<style>
+    /* Кастомное оформление админки (пункт 7) */
+    :root {
+        --primary: #1f4e79;
+        --secondary: #2e75b6;
+        --accent: #f2b705;
+    }
+    #header {
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        color: #fff;
+    }
+    #header a:link, #header a:visited {
+        color: #fff;
+    }
+    .module h2, .module caption, .inline-group h2 {
+        background: var(--primary);
+    }
+    div.breadcrumbs {
+        background: var(--secondary);
+    }
+    .button, input[type=submit], input[type=button] {
+        background: var(--secondary);
+    }
+    .button.default, input[type=submit].default, .submit-row input.default {
+        background: var(--primary);
+    }
+    #branding h1 a {
+        font-weight: 700;
+        letter-spacing: .5px;
+    }
+</style>
+{% endblock %}
